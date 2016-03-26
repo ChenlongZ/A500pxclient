@@ -1,4 +1,4 @@
-package com.cindy.zic.a500pxclient.login.OAuth.OAuthProviders;
+package com.cindy.zic.a500pxclient.login.OAuth.ThirdPartyProviders;
 
 import com.cindy.zic.a500pxclient.login.OAuth.OAuthProvider;
 

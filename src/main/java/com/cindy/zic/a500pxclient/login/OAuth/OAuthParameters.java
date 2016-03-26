@@ -15,7 +15,7 @@ public class OAuthParameters {
 
     private HashMap<String, String> params;
 
-    public void OAuthParameters(String consumerKey) {
+    public OAuthParameters(String consumerKey) {
 
         if (consumerKey == null || consumerKey.trim().length() == 0) {
             throw new IllegalArgumentException("Consumer must not be empty");
@@ -76,6 +76,10 @@ public class OAuthParameters {
         }
 
         return sKeys;
+    }
+
+    public void put(String k, String v) {
+        params.put(k, v);
     }
 
     private String GetTimeStampInSec() {
