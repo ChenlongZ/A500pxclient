@@ -40,17 +40,22 @@ public class OAuthAuthorization {
     private String requestToken;
     private String requestSecrect;
 
-    private String url = Constants.BASE_URL;
-    private String request_token_url = Constants.OAUTH_REQUEST_TOKEN_URL;
-    private String access_token_url = Constants.OAUTH_ACCESS_TOKEN_URL;
-    private String authorization_url = Constants.OAUTH_AUTHORIZE_URL;
+    private String url;
+    private String request_token_url;
+    private String access_token_url;
+    private String authorization_url;
 
-    OAuthAuthorization() {};
+    private OAuthAuthorization(String url) {
+        this.url = url;
+        this.request_token_url = url + Constants.OAUTH_REQUEST_TOKEN_SUFFIX;
+        this.access_token_url = url + Constants.OAUTH_ACCESS_TOKEN_SUFFIX;
+        this.authorization_url = url + Constants.OAUTH_AUTHORIZE_SUFFIX;
+    }
 
     // third party provider info goes there;
     public static OAuthAuthorization build(String url, String k, String s){
-        Builder builder = new Builder();
-        OAuthAuthorization o = builder.url(url).consumerKey(k).consumerSecrect(s).build();
+        Builder builder = new Builder(url);
+        OAuthAuthorization o = builder.consumerKey(k).consumerSecrect(s).build();
         return o;
     }
 
@@ -105,7 +110,7 @@ public class OAuthAuthorization {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        final OAuthAuthorization oauth = new OAuthAuthorization();
+        final OAuthAuthorization oauth = new OAuthAuthorization(this.url);
         oauth.consumerKey = this.consumerKey;
         oauth.consumerKey = this.consumerSecrect;
         return oauth;
@@ -115,13 +120,8 @@ public class OAuthAuthorization {
 
         private OAuthAuthorization instance;
 
-        public Builder() {
-            this.instance = new OAuthAuthorization();
-        }
-
-        public Builder url(String url) {
-            this.instance.url = url;
-            return this;
+        public Builder(String url) {
+            this.instance = new OAuthAuthorization(url);
         }
 
         public Builder consumerKey(String consumerKey) {
@@ -148,5 +148,7 @@ public class OAuthAuthorization {
             }
         }
     }
+
+    public String getRequestToken() {return this.requestToken;}
 
 }

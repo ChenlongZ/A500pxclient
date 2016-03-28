@@ -5,9 +5,24 @@ package com.cindy.zic.a500pxclient.commons;
  */
 public class Constants {
 
-    public static final String BASE_URL = "https://api.500px.com/v1";
-    public static final String OAUTH_REQUEST_TOKEN_URL = BASE_URL + "/oauth/request_token";
-    public static final String OAUTH_ACCESS_TOKEN_URL = BASE_URL + "/oauth/access_token";
-    public static final String OAUTH_AUTHORIZE_URL = BASE_URL + "/oauth/authorize";
+    // URLs
 
+    // API base url
+    public static final String BASE_URL = "https://api.500px.com/v1";
+
+    // OAuth URLs
+    public static final String PX_OAUTH_BASE_URL = "https://api.500px.com/v1";
+    public static final String FB_OAUTH_BASE_URL = "";
+    public static final String WB_OAUTH_BASE_URL = "";
+    public static final String OAUTH_REQUEST_TOKEN_SUFFIX = "/oauth/request_token";
+    public static final String OAUTH_ACCESS_TOKEN_SUFFIX = "/oauth/access_token";
+    public static final String OAUTH_AUTHORIZE_SUFFIX = "/oauth/authorize";
+
+    // OAuth credentials
+    public static final String PX_CONSUMER_KEY = "";
+    public static final String PX_CONSUMER_SECRET = "";
+    public static final String FB_CONSUMER_KEY = "";
+    public static final String FB_CONSUMER_SECRET = "";
+    public static final String WB_CONSUMER_KEY = "";
+    public static final String WB_CONSUMER_SECRET = "";
 }

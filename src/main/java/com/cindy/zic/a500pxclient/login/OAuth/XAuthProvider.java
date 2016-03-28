@@ -37,7 +37,7 @@ public class XAuthProvider implements OAuthProvider{
     private String tokenKey;
     private String tokenSecret;
 
-    protected XAuthProvider() {};
+    protected XAuthProvider() {};   // it must be here even it looks trivial, otherwise it's overwritten by customized constructor
 
     public XAuthProvider(String username, String password) {
         this.username = username;

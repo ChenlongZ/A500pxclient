@@ -7,8 +7,6 @@ public interface LoginView {
 
     public void SetProgressBarVisibility(int visibility);
 
-    public void SetWebViewVisibility(int visibility);
-
     public void OnLoginResult(boolean result);
 
     public void OnSignUpReturned();
