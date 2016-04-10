@@ -55,7 +55,9 @@ public class OAuthAuthorization {
     // third party provider info goes there;
     public static OAuthAuthorization build(String url, String k, String s){
         Builder builder = new Builder(url);
-        OAuthAuthorization o = builder.consumerKey(k).consumerSecrect(s).build();
+        OAuthAuthorization o = builder.consumerKey(k)
+                .consumerSecrect(s)
+                .build();
         return o;
     }
 
@@ -112,7 +114,7 @@ public class OAuthAuthorization {
     protected Object clone() throws CloneNotSupportedException {
         final OAuthAuthorization oauth = new OAuthAuthorization(this.url);
         oauth.consumerKey = this.consumerKey;
-        oauth.consumerKey = this.consumerSecrect;
+        oauth.consumerSecrect = this.consumerSecrect;
         return oauth;
     }
 

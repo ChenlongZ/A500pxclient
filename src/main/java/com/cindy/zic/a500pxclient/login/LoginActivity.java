@@ -5,18 +5,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cindy.zic.a500pxclient.R;
-import com.cindy.zic.a500pxclient.commons.Constants;
 import com.cindy.zic.a500pxclient.commons.net.NetUtil;
 import com.cindy.zic.a500pxclient.commons.utils.PrefUtil;
 import com.cindy.zic.a500pxclient.login.OAuth.AccessToken;
-import com.cindy.zic.a500pxclient.main.MainActivity;
+import com.cindy.zic.a500pxclient.main.android.MainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
@@ -46,14 +44,14 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
         getActionBar().hide();
         setContentView(R.layout.activity_login);
 
+        // view injection
+        ButterKnife.bind(this);
+
         // set listeners
         loginBtn.setOnClickListener(this);
         signupBtn.setOnClickListener(this);
         fbloginBtn.setOnClickListener(this);
         wbloginBtn.setOnClickListener(this);
-
-        // view injection
-        ButterKnife.bind(this);
 
         // Init
         tmpEmail = PrefUtil.getFromPrefs(this, PrefUtil.PREFS_LOGIN_USERNAME_KEY, "");
@@ -74,7 +72,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
         // if connected
         if (isConnected) {
             // If did login before, retrieve data and do login
-            // TODO: if you do this, when user log out, tmpEmail and tmpPassword should be clear to preven auto login
+            // TODO: if you do this, when PxUser log out, tmpEmail and tmpPassword should be clear to preven auto login
             if (!tmpEmail.isEmpty() && !tmpPassword.isEmpty()) {
                 loginEmail.setText(tmpEmail);
                 loginPassword.setText(tmpPassword);
@@ -127,7 +125,7 @@ public class LoginActivity extends Activity implements View.OnClickListener, Log
         if (result) {
             // make a toast
             Toast.makeText(this, "Login success", Toast.LENGTH_SHORT).show();
-            // save user info to local storage
+            // save PxUser info to local storage
             CacheUserCredential(loginEmail.getText().toString(), loginPassword.getText().toString());
             // clear text fields
             ClearText();

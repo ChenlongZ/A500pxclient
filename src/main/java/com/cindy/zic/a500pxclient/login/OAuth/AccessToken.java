@@ -16,6 +16,7 @@ public class AccessToken implements Parcelable {
     private String token;
     private String tokenSecret;
 
+    public AccessToken() {};
 
     public AccessToken(String token, String tokenSecret) {
         this.token = token;
@@ -49,6 +50,10 @@ public class AccessToken implements Parcelable {
     public String getTokenSecret() {
         return this.tokenSecret;
     }
+
+    public void setToken(String token) {this.token = token; }
+
+    public void setSecret(String secret) {this.tokenSecret = secret; }
 
     public static final Parcelable.Creator<AccessToken> CREATOR = new Parcelable.Creator<AccessToken>(){
         public AccessToken createFromParcel(Parcel in) {

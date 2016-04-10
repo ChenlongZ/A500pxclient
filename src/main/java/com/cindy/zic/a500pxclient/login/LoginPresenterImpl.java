@@ -22,18 +22,24 @@ public class LoginPresenterImpl implements LoginPresenter, LoginCallbacks {
 
     @Override
     public AccessToken loginXAuth(String email, String password){
-        OAuthAuthorization auth = OAuthAuthorization.build(Constants.BASE_URL, Constants.PX_CONSUMER_KEY, Constants.PX_CONSUMER_SECRET);
-        XAuthProvider x_provider = new XAuthProvider(email, password);
-        try {
-            if (auth.authorize(x_provider)) {
-                AccessToken x_token = auth.getAccessToken(x_provider);
-                return x_token;
-                // TODO: this may not be correct, we assume access token won't expire and can be used next time we open the app
+        final XAuthProvider x_provider = new XAuthProvider(email, password);
+        final AccessToken accessToken = new AccessToken();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OAuthAuthorization auth = OAuthAuthorization.build(Constants.BASE_URL, Constants.PX_CONSUMER_KEY, Constants.PX_CONSUMER_SECRET);
+                try {
+                    if (auth.authorize(x_provider)) {
+                        accessToken.setToken(auth.getAccessToken(x_provider).getToken());
+                        Log.d(TAG, accessToken.getToken());
+                        // TODO: this may not be correct, we assume access token won't expire and can be used next time we open the app
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, "Acquire access token failed...");
+                }
             }
-        } catch (Exception e) {
-            Log.e(TAG, "Acquire access token failed...");
-        }
-        return null;
+        }).start();
+        return accessToken;
     }
 
     @Override

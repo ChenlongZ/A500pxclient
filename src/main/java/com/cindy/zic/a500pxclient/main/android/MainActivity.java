@@ -1,4 +1,4 @@
-package com.cindy.zic.a500pxclient.main;
+package com.cindy.zic.a500pxclient.main.android;
 
 import android.os.Bundle;
 import android.app.Activity;
