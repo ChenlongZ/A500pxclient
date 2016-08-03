@@ -1,1 +1,2 @@
-pring "hello git"
+print "hello git"
+print "testing a branch..."
